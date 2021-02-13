@@ -26,6 +26,13 @@ const showImages = (images) => {
   });
 };
 
+// Search to hit Enter
+document.getElementById('search').addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    searchBtn.click();
+  }
+});
+
 const getImages = (query) => {
   fetch(
     `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
