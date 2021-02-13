@@ -32,6 +32,7 @@ const showImages = (images) => {
     });
     searchInput.value = '';
   }
+  document.getElementById('duration').value = '';
 };
 
 // Search to hit Enter
