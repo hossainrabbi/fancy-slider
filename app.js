@@ -94,7 +94,7 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
   let duration = document.getElementById('duration').value || 1000;
-  if (duration >= 0) {
+  if (duration >= 1000) {
     duration = duration;
   } else {
     duration = 1000;
@@ -153,9 +153,7 @@ sliderBtn.addEventListener('click', function () {
 
 const loddingSpinner = (show) => {
   const spinner = document.getElementById('logging-spinner');
-  if (show) {
-    spinner.classList.remove('d-none');
-  } else {
-    spinner.classList.add('d-none');
-  }
+  show ? spinner.classList.remove('d-none') : spinner.classList.add('d-none');
+  errorMessage.classList.toggle('d-none');
+  imagesArea.classList.toggle('d-none');
 };
