@@ -152,7 +152,7 @@ sliderBtn.addEventListener('click', function () {
 });
 
 const loddingSpinner = (show) => {
-  const spinner = document.getElementById('logging-spinner');
+  const spinner = document.getElementById('lodding-spinner');
   show ? spinner.classList.remove('d-none') : spinner.classList.add('d-none');
   errorMessage.classList.toggle('d-none');
   imagesArea.classList.toggle('d-none');
