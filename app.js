@@ -94,11 +94,11 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
   let duration = document.getElementById('duration').value || 1000;
-  if (duration >= 0) {
+  if (duration >= 1000) {
     duration = duration;
   } else {
     alert(
-      'Duration value cannot be negative. So the default duration is set to 1 second.'
+      'Duration value cannot be negative or Less than 1 second. So the default duration is set to 1 second.'
     );
     duration = 1000;
   }
