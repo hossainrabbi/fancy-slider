@@ -97,6 +97,9 @@ const createSlider = () => {
   if (duration >= 1000) {
     duration = duration;
   } else {
+    alert(
+      'Duration value cannot be negative or less than 1 second(1000ms). So the default value is set to 1 second(1000ms).'
+    );
     duration = 1000;
   }
   sliders.forEach((slide) => {
