@@ -1,4 +1,5 @@
 const imagesArea = document.querySelector('.images');
+const errorMessage = document.getElementById('error-message');
 const gallery = document.querySelector('.gallery');
 const galleryHeader = document.querySelector('.gallery-header');
 const searchInput = document.getElementById('search');
@@ -16,10 +17,16 @@ const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 // show images
 const showImages = (images) => {
   if (images.length === 0 || searchInput.value === '') {
-    searchInput.value === ''
-      ? alert('The search box cannot be empty')
-      : alert('This item does not exist');
+    imagesArea.style.display = 'none';
+    errorMessage.style.display = 'block';
+    // show error message
+    if (searchInput.value === '') {
+      errorMessage.innerHTML = `<h1 class="text-center text-danger mt-4">The search box cannot be empty</h1>`;
+    } else {
+      errorMessage.innerHTML = `<h1 class="text-center text-danger mt-4">This item does not exist</h1>`;
+    }
   } else {
+    errorMessage.style.display = 'none';
     imagesArea.style.display = 'block';
     gallery.innerHTML = '';
     // show gallery title
@@ -48,7 +55,7 @@ const getImages = (query) => {
   )
     .then((response) => response.json())
     .then((data) => showImages(data.hits))
-    .catch((err) => alert('Something is wrong'));
+    .catch((err) => console.log(err));
 };
 
 let slideIndex = 0;
@@ -84,25 +91,25 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-  const duration = document.getElementById('duration').value || 1000;
-  if (duration > 0) {
-    sliders.forEach((slide) => {
-      let item = document.createElement('div');
-      item.className = 'slider-item';
-      item.innerHTML = `<img class="w-100"
+  let duration = document.getElementById('duration').value || 1000;
+  if (duration >= 0) {
+    duration = duration;
+  } else {
+    duration = 1000;
+  }
+  sliders.forEach((slide) => {
+    let item = document.createElement('div');
+    item.className = 'slider-item';
+    item.innerHTML = `<img class="w-100"
       src="${slide}"
       alt="">`;
-      sliderContainer.appendChild(item);
-    });
-    changeSlide(0);
-    timer = setInterval(function () {
-      slideIndex++;
-      changeSlide(slideIndex);
-    }, duration);
-  } else {
-    alert('Duration of slider should be more than 0');
-    imagesArea.style.display = 'block';
-  }
+    sliderContainer.appendChild(item);
+  });
+  changeSlide(0);
+  timer = setInterval(function () {
+    slideIndex++;
+    changeSlide(slideIndex);
+  }, duration);
 };
 
 // change slider index
