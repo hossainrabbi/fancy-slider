@@ -40,6 +40,7 @@ const showImages = (images) => {
     searchInput.value = '';
   }
   document.getElementById('duration').value = '';
+  loddingSpinner(false);
 };
 
 // Search to hit Enter
@@ -50,6 +51,7 @@ searchInput.addEventListener('keypress', (e) => {
 });
 
 const getImages = (query) => {
+  loddingSpinner(true);
   fetch(
     `https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`
   )
@@ -148,3 +150,12 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider();
 });
+
+const loddingSpinner = (show) => {
+  const spinner = document.getElementById('logging-spinner');
+  if (show) {
+    spinner.classList.remove('d-none');
+  } else {
+    spinner.classList.add('d-none');
+  }
+};
